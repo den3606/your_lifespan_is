@@ -1,0 +1,6 @@
+<Entity tags="teleportable_NOT,ui_use_raw_name">
+  <LuaComponent
+		execute_every_n_frame="60"
+		script_source_file="mods/your_lifespan_is/files/scripts/death_judge.lua" >
+	</LuaComponent>
+</Entity>
