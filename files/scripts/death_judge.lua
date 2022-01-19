@@ -39,7 +39,6 @@ local lifetime_s = tonumber(math.floor(ModSettingGet("your_lifespan_is.LIFETIME"
 
 announceLifeLimit(frameToSecond(current_frame), lifetime_s)
 
--- currentTimeはfloatで出るので、端数切捨てを行い判定を入れる
 if current_frame >= secondToFrame(lifetime_s) then
   killPlayer("Your heart has given out.")
 end
