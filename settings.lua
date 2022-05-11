@@ -28,7 +28,7 @@ function mod_setting_change_callback(mod_id, gui, in_main_menu, setting, old_val
 end
 
 local mod_id = "your_lifespan_is" -- This should match the name of your mod's folder.
-mod_settings_version = 1 -- This is a magic global that can be used to migrate settings to new mod versions. call mod_settings_get_version() before mod_settings_update() to get the old value.
+mod_settings_version = 2 -- This is a magic global that can be used to migrate settings to new mod versions. call mod_settings_get_version() before mod_settings_update() to get the old value.
 mod_settings = {{
   id = "LIFETIME",
   ui_name = "LIFETIME",
@@ -38,6 +38,18 @@ mod_settings = {{
   value_max = 60 * 4,
   value_display_multiplier = 1,
   value_display_formatting = "+ $0 minute",
+  scope = MOD_SETTING_SCOPE_NEW_GAME,
+}, {
+  id = "SHOW_LIMIT_TIME",
+  ui_name = "Show Limit Time",
+  ui_description = "You can see remaining life time.",
+  value_default = true,
+  scope = MOD_SETTING_SCOPE_RUNTIME,
+}, {
+  id = "DISPLAY_FLAVOR_TEXT",
+  ui_name = "Display flavor text",
+  ui_description = "At a certain period of time, you will receive a notification from the Grim Reaper..",
+  value_default = true,
   scope = MOD_SETTING_SCOPE_RUNTIME,
 }}
 

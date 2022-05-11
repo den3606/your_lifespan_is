@@ -8,10 +8,7 @@ local function frameToSecond(frame)
   return math.floor(frame / 60)
 end
 
-local function announceLifeLimit(current_time, lifetime)
-  local remaining_time = math.floor(lifetime - current_time)
-  print("remaining_time")
-  print(remaining_time)
+local function announceLifeLimit(remaining_time)
   if remaining_time == 0 then
     -- GG
   elseif remaining_time <= 29 then
@@ -35,10 +32,15 @@ end
 -- main
 --------------
 local current_frame = GameGetFrameNum()
-local lifetime_s = tonumber(math.floor(ModSettingGet("your_lifespan_is.LIFETIME"))) * 60
+local lifetime = tonumber(math.floor(ModSettingGet("your_lifespan_is.LIFETIME"))) * 60
 
-announceLifeLimit(frameToSecond(current_frame), lifetime_s)
+local remaining_time = math.floor(lifetime - frameToSecond(current_frame))
+local can_announce = ModSettingGet("your_lifespan_is.DISPLAY_FLAVOR_TEXT")
 
-if current_frame >= secondToFrame(lifetime_s) then
-  killPlayer("Your heart has given out.")
+if can_announce then
+  announceLifeLimit(remaining_time)
+end
+
+if remaining_time <= 0 then
+  killPlayer("Your heart has given out")
 end
